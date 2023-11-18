@@ -7,7 +7,7 @@ class Departaments(models.Model):
     DepartamentName =models.CharField(max_length=500)
 
     class Employees(models.Model):
-        EmployeeId = models.AutoField(primary_key=true)
+        EmployeeId = models.AutoField(primary_key=True)
         Employeename = models.CharField(max_length=500)
         Department = models.CharField(max_length=500)
         DateOfJoining = models.DateField()
