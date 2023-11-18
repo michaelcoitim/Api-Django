@@ -25,7 +25,7 @@ def departmentApi(request, id=0):
         department_data = JSONParser().parse(request)
         department = Departaments.objects.get(DepartmentId = department_data['DepartmentId'])
         departments_serializer = DepartmentSerializer(department,data=department_data)
-        if departments_serializer.is_valid:
+        if departments_serializer.is_valid():
             departments_serializer.save()
             return JsonResponse("Atualziado com sucesso", safe=False)
         return JsonResponse("Falha ao atualizar",safe=False)
