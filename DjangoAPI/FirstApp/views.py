@@ -35,27 +35,27 @@ def departmentApi(request, id=0):
         return JsonResponse("Deletado com sucesso", safe=False)
 
 @csrf_exempt
-def Employees(request, id=0):
+def employeesApi(request, id=0):
     if request.method == 'GET':
         employees = Employees.objects.all()
         employees_serializer = EmployeesSerializer(employees,many=True)
         return JsonResponse(employees_serializer.data,safe=False)
     elif request.method =='POST':
-        employees_data = JSONParser().parse(request)
-        employees_serializer = EmployeestSerializer(data=employees_data)
+        employee_data = JSONParser().parse(request)
+        employees_serializer = EmployeesSerializer(data=employee_data)
         if employees_serializer.is_valid():
             employees_serializer.save()
             return JsonResponse("adicionado com sucesso!", safe=False)
         return JsonResponse("Erro ao adicionar",safe=False)
     elif request.method =='PUT':
-        employees_data = JSONParser().parse(request)
-        employees = Employees.objects.get(EmployeesId = employees_data['EmployeesId'])
-        employees_serializer = EmployeesSerializer(employees,data=employees_data)
+        employee_data = JSONParser().parse(request)
+        employee = Employees.objects.get(EmployeesId = employee_data['EmployeesId'])
+        employees_serializer = EmployeesSerializer(employee,data=employee_data)
         if employees_serializer.is_valid():
             employees_serializer.save()
             return JsonResponse("Atualziado com sucesso", safe=False)
         return JsonResponse("Falha ao atualizar",safe=False)
     elif request.method =='DELETE':
-        employees = Departaments.objects.get(EmployeesId =id)
-        employees.delete()
+        employee = Employees.objects.get(EmployeeId =id)
+        employee.delete()
         return JsonResponse("Deletado com sucesso", safe=False)
